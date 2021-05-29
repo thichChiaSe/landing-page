@@ -1,0 +1,31 @@
+.product {
+  .container {
+    .total {
+      padding: 20px;
+      &__item {
+        display: flex;
+        width: 100%;
+        &__item:nth-child(2) {
+          padding-right: 100px;
+          flex-direction: row-reverse;
+        }
+        &__item:nth-child(1) {
+          padding-left: 100px;
+        }
+      }
+      .textbox1 {
+        padding-top: 100px;
+        text-align: center;
+        padding-right: 10px;
+        h2 {
+          font-family: "lucida sans regular";
+          font-size: 30px;
+          text-transform: uppercase;
+          padding-left: 100px;
+          padding-bottom: 10px;
+          letter-spacing: 5px;
+        }
+      }
+    }
+  }
+}

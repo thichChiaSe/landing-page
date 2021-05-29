@@ -1,0 +1,275 @@
+header {
+  --heightHeader: 60px;
+  height: var(--heightHeader);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  width: 100%;
+  .container-fluid {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    .logo {
+      img {
+        width: 170px;
+      }
+      .hidden {
+        display: none;
+      }
+    }
+    .menu {
+      height: 100%;
+      display: flex;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%);
+      li {
+        height: 100%;
+      }
+      a {
+        height: 100%;
+        @include midflex;
+        @include text(16px, fmain, normal, white, uppercase);
+        position: relative;
+        margin: 0 18px;
+        overflow: hidden;
+        @include transition($t);
+        &:after {
+          content: "";
+          width: 100%;
+          height: 1px;
+          background: white;
+          position: absolute;
+          left: 0;
+          bottom: 20px;
+          @include transform(scaleX(0));
+          @include transform-origin(left center);
+          @include transition($t cubic-bezier(0.9, 0.03, 0, 1));
+        }
+        &:hover {
+          // opacity: 0.5;
+          // @include transition($t);
+          &:after {
+            @include transform(scaleX(1));
+            @include transform-origin(right center);
+            @include transition($t cubic-bezier(0.9, 0.03, 0, 1));
+          }
+        }
+      }
+    }
+    .right {
+      display: inline-flex;
+      .lang {
+        margin-right: 10px;
+        position: relative;
+        @include midflex;
+        @include text(16px, fmain, normal, white, uppercase);
+        &__current {
+          display: inline-flex;
+          cursor: pointer;
+          i {
+            @include midflex;
+            margin-left: 6px;
+            img {
+              width: 18px;
+            }
+          }
+        }
+        &__ul {
+          // height: 100%;
+          background: transparent;
+          padding: 20px;
+          width: 100px;
+          height: auto;
+          position: absolute;
+          right: 0px;
+          top: 1px;
+          text-align: right;
+          display: none;
+          a {
+            padding: 5px 0;
+            color: white;
+          }
+        }
+        &:hover {
+          .lang__ul {
+            display: block;
+          }
+        }
+      }
+      .hambeger {
+        height: 40px;
+        .btnmenu {
+          display: none;
+          width: 40px;
+          height: 22px;
+          position: relative;
+          z-index: 300;
+          cursor: pointer;
+          span {
+            margin-left: 22px;
+            // top: 1px;
+            // right: 11px;
+            width: 100%;
+            height: 5px;
+            display: block;
+            background: $yellow-cl;
+            position: absolute;
+            top: 17%;
+            @include transform(translate(-50%));
+            @include transition(0.3s);
+            margin-right: 15px;
+            span:nth-child(1) {
+              top: 0px;
+            }
+            span:not(:last-child) {
+              margin-bottom: 6px;
+            }
+          }
+          // &:before,
+          // &:after {
+          //   content: "";
+          //   width: 45px;
+          //   height: 3px;
+          //   display: block;
+          //   background: $yellow-cl;
+          //   @include transform(rotate(0deg) translateY(20px));
+          //   @include transition(transform 0.3s);
+          // }
+          // &:after {
+          //   position: absolute;
+          //   bottom: 5px;
+          // }
+          &.clicked {
+            &::before {
+              @include transform(rotate(45deg) translate(6px, 8px));
+              @include transition(transform(0.3s));
+            }
+            span {
+              opacity: 0;
+              @include transition(0.3s);
+            }
+            &:after {
+              @include transform(rotate(-45deg) translate(4px, -8px));
+              @include transition(transform(0.3s));
+            }
+          }
+        }
+      }
+    }
+    .nav {
+      background: black;
+      position: fixed;
+      top: 0;
+      left: 0;
+      @include transform(initial);
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      // pointer-events: none;
+      @include transform(opacity 0.3s);
+      ul {
+        flex-direction: column;
+        @include mid();
+        li {
+          margin: 0 auto;
+          a {
+            padding: 20px 0;
+            color: $white-cl;
+            text-align: center;
+          }
+        }
+      }
+      &.active {
+        opacity: 1;
+        pointer-events: auto;
+        @include transition(opacity 0.3s);
+      }
+    }
+  }
+  @include tablet {
+    .container-fluid {
+      .menu {
+        display: none;
+      }
+      .right {
+        .hambeger {
+          .btnmenu {
+            display: block;
+            span {
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@include mobile {
+  --heightHeader: 60px;
+  .container-fluid {
+    .logo {
+      .hidden {
+        display: none;
+      }
+    }
+    .menu {
+      ul {
+        display: flex;
+        li {
+        }
+        a {
+          display: flex;
+          padding: 0 15px;
+          color: white;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
+
+// .menu {
+//   display: flex;
+// }
+
+// .lang_current span {
+//   color: red;
+// }
+
+// .header ul{
+// 	display: flex;
+// }
+// .product {
+//   .container {
+//     .total {
+//       &__item {
+//         // padding: 40px;
+//         display: flex;
+//         width: 100%;
+//         &__item:nth-child(2) {
+//           padding-right: 100px;
+//           flex-direction: row-reverse;
+//         }
+//         &__item:nth-child(1) {
+//           padding-left: 100px;
+//         }
+//       }
+//       .textbox1 {
+//         padding-top: 100px;
+//         text-align: right;
+//         padding-right: 10px;
+//         h2 {
+//           font-family: "lucida sans regular";
+//           font-size: 30px;
+//           text-transform: uppercase;
+//           padding-left: 100px;
+//           padding-bottom: 10px;
+//           letter-spacing: 5px;
+//         }
+//       }
+//     }
+//   }
+// }

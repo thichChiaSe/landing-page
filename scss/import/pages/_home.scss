@@ -1,0 +1,165 @@
+.homepage {
+  .slider {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    // --fzTitle: 80px;
+    .listitems {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      .slider__item {
+        display: none;
+        width: 100%;
+        height: 100%;
+        &-text {
+          width: 700px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          text-align: center; // cho text o giua khung
+          transform: translate(-50%, -50%);
+          flex-wrap: wrap; // xep chong
+          justify-content: center; // nam giua
+          .btn {
+            margin-left: 255px;
+          }
+          .title {
+            margin-bottom: 30px;
+            font-size: 80px;
+            color: #bea67c;
+            text-transform: uppercase;
+            letter-spacing: 20px;
+          }
+          a {
+            align-items: center;
+            padding: 10px 30px;
+            font-size: 14px;
+            color: white;
+            text-transform: uppercase;
+            border: 1px solid white;
+            display: flex;
+            width: max-content;
+            &:hover {
+              background: #bea67c;
+              @include transition(0.3s);
+            }
+            i {
+              margin-left: 15px;
+            }
+          }
+        }
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .slider__item.active {
+        display: block;
+      }
+    }
+    .slider {
+      &__bottom {
+        justify-content: space-between;
+        top: 93%;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        position: absolute;
+        &-paging {
+          display: flex;
+          align-items: center;
+          .number {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            @include text(52px, pb, normal, $yellow-cl, uppercase);
+            &:before {
+              content: "";
+              width: 60px;
+              height: 4px;
+              background: $yellow-cl;
+              display: inline-block;
+              margin-right: 15px;
+            }
+          }
+          .dotted {
+            width: 100px;
+            @include midflex;
+            justify-content: space-evenly;
+            li {
+              width: 10px;
+              height: 10px;
+              background: #bea67c;
+              border-radius: 50%;
+              opacity: 0.3;
+              cursor: pointer;
+              transition: 0.3s;
+              &:hover,
+              &.active {
+                opacity: 1;
+                transition: 0.3s;
+              }
+            }
+          }
+        }
+
+        &-mouse {
+          top: -110%;
+          position: absolute;
+          left: 50%;
+          @include transform(translateX(-50%));
+          bottom: 20px;
+          @include keyframes(topdown) {
+            0% {
+              @include transform(translateY(0px));
+              opacity: 0;
+              @include transition(0.3s);
+            }
+            100% {
+              @include transform(translateY(20px));
+              opacity: 1;
+              @include transition(0.3s);
+            }
+          }
+        }
+        .mouse {
+          margin-bottom: 1px;
+        }
+        .arrow {
+          @include animation(topdown 1s ease forwards infinite);
+        }
+        img {
+          margin-bottom: 1px;
+        }
+        &-control {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: auto;
+          width: 180px;
+          height: 40px;
+          .btnctr {
+            cursor: pointer;
+            border: 1px solid white;
+            @include transition(0.3s);
+            @include midflex();
+            i {
+              display: block;
+            }
+            // &.prev {
+            //   // i {
+            //   //   @include transform(rotate(180deg));
+            //   // }
+            // }
+            &:hover {
+              background: red;
+              @include transition(0.3s);
+            }
+          }
+        }
+      }
+    }
+  }
+}
